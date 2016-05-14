@@ -150,18 +150,20 @@ git commit -m "Unrelated change to c"
     #+END_SRC
 *** Changes to the files
     - First Change: Adding default page tags =<html>= and =<body>=.to =hello.html= file
+
       #+BEGIN_SRC 
 <html>
   <body>
     <h1>Hello, World!</h1>
   </body>
 </html>
-      #+END_SRC
-    - Add above changes 
+#+END_SRC
+   - Add above changes 
       #+BEGIN_SRC 
       git add hello.html
       #+END_SRC
     - Second change: Add the HTML headers (<head> section) to the =hello.html= page.
+
       #+BEGIN_SRC 
 <html>
   <head>
@@ -170,11 +172,14 @@ git commit -m "Unrelated change to c"
     <h1>Hello, World!</h1>
   </body>
 </html>
+
       #+END_SRC
+
     - Check the current status
       #+BEGIN_SRC 
       git status
       #+END_SRC
+
     - You will see result as
 #+BEGIN_SRC 
 $ git status
@@ -382,9 +387,109 @@ h1 {
 git add lib/style.css
 git commit -m "Added css stylesheet"
 #+END_SRC
-*** View branches
-*** Merge branches
-*** Merge branches with conflicts
+    - Change the main page
+    - Update the hello.html file, to use style.css
+#+BEGIN_SRC 
+<!-- Author: Alexander Shvets (alex@githowto.com) -->
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" media="all" href="style.css" />
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+#+END_SRC
+#+BEGIN_SRC 
+git add hello.html
+git commit -m "Hello uses style.css"
+#+END_SRC
+*** Navigating Branches
+    - Now your project has two branches =master= and =develop=.
+    - Switching to the Master branch
+    - To switch between branches simply use the git checkout command.
+#+BEGIN_SRC 
+git checkout master
+cat hello.html
+#+END_SRC
+#+BEGIN_SRC 
+$ cat hello.html
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+#+END_SRC
+    -  Let us return to the style branch.
+#+BEGIN_SRC 
+git checkout develop
+cat hello.html
+#+END_SRC
+#+BEGIN_SRC 
+$ git checkout develop
+Switched to branch 'develop'
+$ cat lib/hello.html
+<!-- Author: Alexander Shvets (alex@githowto.com) -->
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" media="all" href="style.css" />
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+#+END_SRC
+*** Changes to the =master= branch
+    - At the time you are changing the =master= branch, someone decided
+      to change the master branch. He added a README file with following content
+#+BEGIN_SRC 
+This is the Hello World example from the git tutorial.
+#+END_SRC
+    - Commit changes of README file in the master branch.
+#+BEGIN_SRC 
+git checkout master
+git add README
+git commit -m "Added README"
+#+END_SRC
+*** View the different branches
+    - View current branche
+#+BEGIN_SRC 
+git branch
+#+END_SRC
+    - View all branches
+#+BEGIN_SRC 
+git branch -a
+#+END_SRC
+*** Merging branches
+    - Merging brings changes from two branches into one. Let us go
+      back to the style branch and merge it with master.
+#+BEGIN_SRC 
+git checkout develop
+git merge master
+git log
+#+END_SRC
+*** Resolving merge conflicts
+    - Return to the master and create conflict and add the following changes to =hello.html= file
+#+BEGIN_SRC 
+git checkout master
+#+END_SRC
+#+BEGIN_SRC 
+<!-- Author: Alexander Shvets (alex@githowto.com) -->
+<html>
+  <head>
+    <!-- no style -->
+  </head>
+  <body>
+    <h1>Hello, World! Life is great!</h1>
+  </body>
+</html>
+#+END_SRC
+#+BEGIN_SRC 
+git add hello.html
+git commit -m 'Life is great!'
+#+END_SRC
 ** Setting up remote repositroy
 ** Forking repository
 ** 
