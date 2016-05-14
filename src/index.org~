@@ -1,0 +1,29 @@
+#+TITLE: Git session
+#+AUTHOR: VLEAD
+#+DATE: [2015-10-27 Tue]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./org-templates/level-0.org
+#+options: ^:nil
+
+* Introduction to version control systems
+* Types of version control systems
+** Distributed version control systems
+** Centralized version control systems
+* Git VCS
+** Setting up name and e-mail address
+   - To be fully prepared to work with Git.
+ #+BEGIN_SRC
+If you've never used git before, first you need to set up your name
+and e-mail. Run the following commands to let git know your name and
+e-mail address. If git is already installed, skip down to the end of
+the line.
+git config --global user.name "Your Name"
+git config --global user.email "your_email@whatever.com"
+#+END_SRC
+** Installation
+   
+** Basic commands
+** Installing
+
+   

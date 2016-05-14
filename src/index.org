@@ -1,0 +1,391 @@
+#+TITLE: Git session
+#+AUTHOR: VLEAD
+#+DATE: [2015-10-27 Tue]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./org-templates/level-0.org
+#+options: ^:nil
+
+* Introduction to version control systems
+* Types of version control systems
+  [[ ./git.png ]]
+
+** Distributed version control systems
+** Centralized version control systems
+* Git VCS
+** Setting up name and e-mail address
+   - If you've never used git before, first you need to set up your
+     name and e-mail.
+   - Run the following commands to let git know your name and e-mail
+     address. If git is already installed, skip down to the end of the
+     line.
+#+BEGIN_SRC
+git config --global user.name "Your Name"
+git config --global user.email "your_email@whatever.com"
+#+END_SRC
+** Creating a Project
+*** Creating =hello.html= page
+   - Crate a empty directory =hello= then create a =hello.html= file in it with the following the "hello world".
+   
+#+BEGIN_SRC
+mkdir hello
+cd hello
+touch hello.html
+echo "hello world" > hello.html
+#+END_SRC
+*** Create a repository
+   - So you have a directory that contains one file. Run the git init
+     in order to create a git repo from that directory.
+   - =init= command will intialize the directory to the version control system
+#+BEGIN_SRC
+git init
+ #+END_SRC
+   - Result
+#+BEGIN_SRC
+$ git init
+Initialized empty Git repository in /home/sripathi/git-session/hello/.git/
+ #+END_SRC
+   - Check the status of the repository
+#+BEGIN_SRC
+git status
+ #+END_SRC
+
+*** Add the page to the repository
+   - Now let's add the =hello.html= page to the repository and check the status
+
+#+BEGIN_SRC
+git add hello.html
+ #+END_SRC
+   - Check the status of the repository
+#+BEGIN_SRC
+git status
+ #+END_SRC
+   - Commit the changes
+#+BEGIN_SRC
+git commit -m "First Commit"
+ #+END_SRC
+   - Result
+
+#+BEGIN_SRC
+$ git add hello.html
+$ git commit -m "First Commit"
+[master (root-commit) 911e8c9] First Commit
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+ create mode 100644 hello.html
+
+ #+END_SRC
+*** Check the status of the repository
+    - Use the =git status= command, to check the current state of the repository.
+#+BEGIN_SRC
+git status
+ #+END_SRC
+    - Result
+#+BEGIN_SRC
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+ #+END_SRC
+    - The command checks the status and reports that there¡¯s nothing
+      to commit, meaning the repository stores the current state of
+      the working directory, and there are no changes to record.
+*** Making changes
+    - Changing the =hello.html= page
+    #+BEGIN_SRC 
+     cat "<h1>Hello, World!</h1>" >> hello.html
+    #+END_SRC    
+    - Checking the status
+      #+BEGIN_SRC 
+      git status
+      #+END_SRC
+    - Result
+      #+BEGIN_SRC 
+      $ git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#   modified:   hello.html
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+      #+END_SRC
+*** Staging the changes
+    - Adding changes 
+    - Use =git add= command to add the changes to file and check the status
+	#+BEGIN_SRC 
+	git add hello.html
+        git status
+	#+END_SRC
+    - Result
+	#+BEGIN_SRC 
+$ git add hello.html
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#   modified:   hello.html
+#
+	#+END_SRC
+    - Use =git reset= command to undo the changes and check the status
+	#+BEGIN_SRC 
+	git checkout hello.html
+        git status
+	#+END_SRC
+*** Staging and commiting
+    - Suppose you have edited three files (a. html, b. html, and
+      c. html). After that you need to commit all the changes so that
+      the changes to a. html and b. html were a single commit, while
+      the changes to c. html were not logically associated with the
+      first two files and were done in a separate commit.
+    - In theory you can do the following:
+      #+BEGIN_SRC 
+git add a.html
+git add b.html
+git commit -m "Changes for a and b"
+      #+END_SRC
+    #+BEGIN_SRC 
+git add c.html
+git commit -m "Unrelated change to c"
+    #+END_SRC
+*** Changes to the files
+    - First Change: Adding default page tags =<html>= and =<body>=.to =hello.html= file
+      #+BEGIN_SRC 
+<html>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+      #+END_SRC
+    - Add above changes 
+      #+BEGIN_SRC 
+      git add hello.html
+      #+END_SRC
+    - Second change: Add the HTML headers (<head> section) to the =hello.html= page.
+      #+BEGIN_SRC 
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+      #+END_SRC
+    - Check the current status
+      #+BEGIN_SRC 
+      git status
+      #+END_SRC
+    - You will see result as
+#+BEGIN_SRC 
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#   modified:   hello.html
+#
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#   modified:   hello.html
+#
+#+END_SRC
+    - Commit
+#+BEGIN_SRC
+git commit -m "Added standard HTML page tags"
+git status
+#+END_SRC
+    - Result
+#+BEGIN_SRC 
+$ git commit -m "Added standard HTML page tags"
+[master 8c32287] Added standard HTML page tags
+ 1 files changed, 3 insertions(+), 1 deletions(-)
+$ git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#   modified:   hello.html
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+#+END_SRC
+    - Adding the second change
+#+BEGIN_SRC 
+git add .
+git status
+#+END_SRC
+    - Result
+#+BEGIN_SRC 
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#   modified:   hello.html
+#
+#+END_SRC
+    - Commit the second change
+#+BEGIN_SRC 
+git commit -m "Added HTML header"
+#+END_SRC
+*** History of project
+    - Getting a list of changes made is a function of the git log command.
+#+BEGIN_SRC 
+git log
+#+END_SRC
+    - Result
+#+BEGIN_SRC 
+$ git log
+commit fa3c1411aa09441695a9e645d4371e8d749da1dc
+Author: Alexander Shvets <alex@githowto.com>
+Date:   Wed Mar 9 10:27:54 2011 -0500
+
+    Added HTML header
+
+commit 8c3228730ed03116815a5cc682e8105e7d981928
+Author: Alexander Shvets <alex@githowto.com>
+Date:   Wed Mar 9 10:27:54 2011 -0500
+
+    Added standard HTML page tags
+
+commit 43628f779cb333dd30d78186499f93638107f70b
+Author: Alexander Shvets <alex@githowto.com>
+Date:   Wed Mar 9 10:27:54 2011 -0500
+
+    Added h1 tag
+
+commit 911e8c91caeab8d30ad16d56746cbd6eef72dc4c
+Author: Alexander Shvets <alex@githowto.com>
+Date:   Wed Mar 9 10:27:54 2011 -0500
+
+    First Commit
+#+END_SRC
+*** Getting older versions
+    - Get into the older version using =git checkout <commit-id>= command and check the contents
+
+#+BEGIN_SRC 
+git checkout <commit-id>
+cat hello.html
+#+END_SRC
+    - Returning to the latest version in the master branch 
+#+BEGIN_SRC 
+git checkout master
+cat hello.html
+#+END_SRC
+*** Discard before staging and after staging
+    - Let's add something to =hello.html= page and check the status
+#+BEGIN_SRC 
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    <!-- This is a bad comment.  We want to revert it. -->
+  </body>
+</html>
+#+END_SRC
+#+BEGIN_SRC 
+git status
+#+END_SRC
+    - Undoing the changes in the working directory
+#+BEGIN_SRC 
+git checkout hello.html
+git status
+cat hello.html
+#+END_SRC
+    - Let's commit something to =hello.html= file and check the status
+#+BEGIN_SRC 
+<html>
+  <head>
+    <!-- This is an unwanted but staged comment -->
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+#+END_SRC
+#+BEGIN_SRC 
+git add hello.html
+git status
+#+END_SRC
+    - Reset the changes
+#+BEGIN_SRC 
+git reset HEAD hello.html
+#+END_SRC
+*** Removing a commit from a branch
+    - =reset= command will clean everything above this commit. Be cacious with =reset= command
+    #+BEGIN_SRC 
+    git reset --hard <commit-id>
+    #+END_SRC
+*** Add remote repository
+    - Create a repository on =github.com= or =bitbucket.com=
+    - Get the remote url and add to the local repository
+    - Syntax
+#+BEGIN_SRC
+git remote add <name> <git_repo_url>
+ #+END_SRC
+    - Example
+#+BEGIN_SRC
+git remote add origin https://github.com/ksripathi/git-session.git
+ #+END_SRC
+
+*** Push to the remote repository
+    - Before we push to remote repository check the status of repository
+#+BEGIN_SRC
+git status
+ #+END_SRC
+    - Push the changes to remote repository
+    - Syntax
+#+BEGIN_SRC
+git push <remote_name> <branch_name>
+ #+END_SRC
+    - Exampl
+#+BEGIN_SRC
+git push origin master
+ #+END_SRC
+    
+*** Pull the changes from remote repository
+    - Do some changes on remote repository
+    - Try to push the code from local to remote repository
+    - Pull the changes from remote repository
+    - Syntax
+
+#+BEGIN_SRC
+git pull <remote_name> <branch_name>
+ #+END_SRC
+    - Example
+#+BEGIN_SRC
+git pull origin master
+ #+END_SRC
+
+** Working with branches
+  - Nearly every VCS has some form of branching support. Branching
+    means you diverge from the main line of development and continue
+    to do work without messing with that main line.
+*** Crating branches
+    - Let us name our new branch *develop*.
+#+BEGIN_SRC
+git branch develop
+ #+END_SRC
+    - Add style.css file
+#+BEGIN_SRC 
+touch lib/style.css
+#+END_SRC
+#+BEGIN_SRC 
+h1 {
+  color: red;
+}
+#+END_SRC
+#+BEGIN_SRC 
+git add lib/style.css
+git commit -m "Added css stylesheet"
+#+END_SRC
+*** View branches
+*** Merge branches
+*** Merge branches with conflicts
+** Setting up remote repositroy
+** Forking repository
+** 
+
