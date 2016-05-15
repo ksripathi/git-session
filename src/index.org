@@ -118,9 +118,9 @@ nothing to commit (working directory clean)
       to commit, meaning the repository stores the current state of
       the working directory, and there are no changes to record.
 *** Making changes
-    - Changing the =hello.html= page
+    - Changing the =hello.html= page with following content
     #+BEGIN_SRC 
-     cat "<h1>Hello, World!</h1>" >> hello.html
+     <h1>Hello, World!</h1>
     #+END_SRC    
     - Checking the status
       #+BEGIN_SRC 
@@ -158,7 +158,7 @@ $ git status
 	#+END_SRC
     - Use =git reset= command to undo the changes and check the status
 	#+BEGIN_SRC 
-	git checkout hello.html
+	git reset HEAD  hello.html
         git status
 	#+END_SRC
 *** Staging and commiting
@@ -394,7 +394,7 @@ git commit -m "Added css stylesheet"
     - Change the main page
     - Update the hello.html file, to use style.css
 #+BEGIN_SRC 
-<!-- Author: Alexander Shvets (alex@githowto.com) -->
+
 <html>
   <head>
     <link type="text/css" rel="stylesheet" media="all" href="style.css" />
@@ -445,7 +445,7 @@ cat hello.html
 $ git checkout testing
 Switched to branch 'testing'
 $ cat hello.html
-<!-- Author: Alexander Shvets (alex@githowto.com) -->
+
 <html>
   <head>
     <link type="text/css" rel="stylesheet" media="all" href="style.css" />
@@ -456,7 +456,7 @@ $ cat hello.html
 </html>
 #+END_SRC
 *** Changes to the =master= branch
-    - At the time you are changing the =master= branch, someone decided
+    - At the time you are changing the =testing= branch, someone decided
       to change the master branch. He added a README file with following content
 #+BEGIN_SRC 
 This is the Hello World example from the git tutorial.
@@ -655,3 +655,4 @@ git pull origin master
      collabarators will receive the notification. And merge the pull
      request if required.
 
+     
