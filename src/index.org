@@ -40,7 +40,7 @@
 ** Work flow diagram
    #+CAPTION:  Cluster Network Diagram
    #+LABEL:  Types of version control systems
-  [[./git-workflow.png]]
+  [[./git-workflow.jpg]]
 
 ** Setting up name and e-mail address
    - If you've never used git before, first you need to set up your
@@ -353,47 +353,6 @@ git reset HEAD hello.html
     #+BEGIN_SRC 
     git reset --hard <commit-id>
     #+END_SRC
-*** Add remote repository
-    - Create a repository on =github.com= or =bitbucket.com=
-    - Get the remote url and add to the local repository
-    - Syntax
-#+BEGIN_SRC
-git remote add <name> <git_repo_url>
- #+END_SRC
-    - Example
-#+BEGIN_SRC
-git remote add origin https://github.com/ksripathi/git-session.git
- #+END_SRC
-
-*** Push to the remote repository
-    - Before we push to remote repository check the status of repository
-#+BEGIN_SRC
-git status
- #+END_SRC
-    - Push the changes to remote repository
-    - Syntax
-#+BEGIN_SRC
-git push <remote_name> <branch_name>
- #+END_SRC
-    - Exampl
-#+BEGIN_SRC
-git push origin master
- #+END_SRC
-    
-*** Pull the changes from remote repository
-    - Do some changes on remote repository
-    - Try to push the code from local to remote repository
-    - Pull the changes from remote repository
-    - Syntax
-
-#+BEGIN_SRC
-git pull <remote_name> <branch_name>
- #+END_SRC
-    - Example
-#+BEGIN_SRC
-git pull origin master
- #+END_SRC
-
 ** Working with branches
   - Nearly every VCS has some form of branching support. Branching
     means you diverge from the main line of testingment and continue
@@ -404,7 +363,7 @@ git pull origin master
       commit in that branch
     - Every time you made a new commit =master= pointer will move to
       the latest commit.
-    - Image
+    - Diagram
     #+CAPTION:  master branch
     #+LABEL:  master branch
     [[./master.png]]
@@ -414,7 +373,7 @@ git pull origin master
 #+BEGIN_SRC
 git branch testing
  #+END_SRC
-    - Image
+    - Diagram
     #+CAPTION:  Git Distributed VCS
     #+LABEL:  Git Distributed VCS
     [[./two-branches.png]]
@@ -457,7 +416,7 @@ git commit -m "Hello uses style.css"
 git checkout master
 cat hello.html
 #+END_SRC
-    - Image
+    - Diagram
     #+CAPTION:  Git Distributed VCS
     #+LABEL:  Git Distributed VCS
     [[./head-to-master.png]]
@@ -477,7 +436,7 @@ $ cat hello.html
 git checkout testing
 cat hello.html
 #+END_SRC
-   - Image
+   - Diagram
     #+CAPTION:  Git Distributed VCS
     #+LABEL:  Git Distributed VCS
     [[./head-to-testing.png]]
@@ -508,6 +467,21 @@ git checkout master
 git add README
 git commit -m "Added README"
 #+END_SRC
+*** Changes to the =testing= branch
+    
+    - Commit changes of README file in the master branch.
+#+BEGIN_SRC 
+git checkout testing
+git touch test.txt
+echo "test" > test.txt
+git add test.txt
+git commit -m "Added test.txt file"
+#+END_SRC
+    - Diagram
+    #+CAPTION:  Git Distributed VCS
+    #+LABEL:  Git Distributed VCS
+    [[./advance-testing.png]]
+
 *** View the different branches
     - View current branche
 #+BEGIN_SRC 
@@ -546,6 +520,96 @@ git add hello.html
 git commit -m 'Life is great!'
 #+END_SRC
 ** Setting up remote repositroy
-** Forking repository
+   - Diagram
+     #+CAPTION:  master branch
+     #+LABEL:  master branch
+     [[./git-workflow.jpg]]
+     
+*** Add remote repository
+    - Create a repository on =github.com= or =bitbucket.com=  [[Clickhere][www.github.com]]
+    - Copy the remote url and add to the local repository
+    - Syntax
+#+BEGIN_SRC
+git remote add <name> <git_repo_url>
+ #+END_SRC
+    - Example
+#+BEGIN_SRC
+git remote add origin https://github.com/ksripathi/git-session.git
+ #+END_SRC
 
+*** Push =master= branch to the remote repository
+    - Before we push to remote repository check the status of repository
+#+BEGIN_SRC
+git status
+ #+END_SRC
+    - Push the changes to remote repository
+    - Syntax
+#+BEGIN_SRC
+git push <remote_name> <branch_name>
+ #+END_SRC
+    - Example
+#+BEGIN_SRC
+git push origin master
+ #+END_SRC
+    
+*** Push =testing= branch to the remote repository
+    - Before we push to remote repository check the status of local repository
+#+BEGIN_SRC
+git status
+ #+END_SRC
+    - Push the changes to remote repository
+#+BEGIN_SRC
+git push origin testing
+ #+END_SRC
+   
+ 
+*** List remote and local branches
+#+BEGIN_SRC
+git branch -a
+ #+END_SRC
+*** Git clone
+    - =git clone= command will give local and remote branch
+#+BEGIN_SRC 
+git clone <url>
+#+END_SRC
+    - Diagram
+     #+CAPTION:  master branch
+     #+LABEL:  master branch
+     [[./server-local.png]]
+    - What if some else pushes the code to the remote branch ?
+      #+CAPTION:  master branch
+      #+LABEL:  master branch
+      [[./remote-change.png]]
+    - =fetch= the changes from remote branches  
+    #+CAPTION:  master branch
+    #+LABEL:  master branch
+    [[./git-fetch.png]]
+
+*** Pull the changes from remote branch
+    - Pull ( fetch + merge ) 
+    - Do some changes on remote repository
+    - Pull the changes from remote repository
+    - Syntax
+
+#+BEGIN_SRC
+git pull <remote_name> <branch_name>
+ #+END_SRC
+    - Example
+#+BEGIN_SRC
+git pull origin master
+ #+END_SRC
+
+** Forking repository
+   - A fork is a copy of a repository. Forking a repository allows you
+     to freely experiment with changes without affecting the original
+     project.
+   - Most commonly, forks are used to either propose changes to
+     someone else's project or to use someone else's project as a
+     starting point for your own idea.
+** Making Pull request
+   - Pull requests let you tell others about changes you've pushed to
+     a repository on GitHub. 
+   - Once a pull request is sent, all the original repository
+     collabarators will receive the notification. And merge the pull
+     request if required.
 
