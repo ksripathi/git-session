@@ -8,6 +8,7 @@
 
 * Introduction to version control systems
 * Types of version control systems
+**** Local version control system
    #+CAPTION:  Cluster Network Diagram
    #+LABEL:  Types of version control systems
   [[./git.png]]
@@ -16,7 +17,7 @@
 ** Centralized version control systems
 * Git VCS
 ** Work flow diagram
-   #+CAPTION:  Version control system
+   #+CAPTION:  Cluster Network Diagram
    #+LABEL:  Types of version control systems
   [[./git-workflow.png]]
 
