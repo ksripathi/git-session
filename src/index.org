@@ -519,6 +519,48 @@ git checkout master
 git add hello.html
 git commit -m 'Life is great!'
 #+END_SRC
+    - Merge the master branch with testing
+#+BEGIN_SRC 
+git checkout testing
+git merge master
+#+END_SRC
+    - Output
+#+BEGIN_SRC 
+$ git checkout style
+Switched to branch 'style'
+$ git merge master
+Auto-merging lib/hello.html
+CONFLICT (content): Merge conflict in lib/hello.html
+Automatic merge failed; fix conflicts and then commit the result.
+#+END_SRC
+    - Open =hello.html= file
+#+BEGIN_SRC 
+<!-- Author: Alexander Shvets (alex@githowto.com) -->
+<html>
+  <head>
+<<<<<<< HEAD
+    <link type="text/css" rel="stylesheet" media="all" href="style.css" />
+=======
+    <!-- no style -->
+>>>>>>> master
+  </head>
+  <body>
+    <h1>Hello,World! Life is great!</h1>
+  </body>
+</html>
+#+END_SRC
+    - Make a commit of conflict resolution
+#+BEGIN_SRC 
+git add lib/hello.html
+git commit -m "Merged master fixed conflict."
+
+Result:
+
+$ git add lib/hello.html
+$ git commit -m "Merged master fixed conflict."
+Recorded resolution for 'lib/hello.html'.
+[style 645c4e6] Merged master fixed conflict.
+#+END_SRC
 ** Setting up remote repositroy
    - Diagram
      #+CAPTION:  master branch
