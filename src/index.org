@@ -8,11 +8,18 @@
 
 * Introduction to version control systems
 * Types of version control systems
-  [[ ./git.png ]]
+   #+CAPTION:  Cluster Network Diagram
+   #+LABEL:  Types of version control systems
+  [[./git.png]]
 
 ** Distributed version control systems
 ** Centralized version control systems
 * Git VCS
+** Work flow diagram
+   #+CAPTION:  Version control system
+   #+LABEL:  Types of version control systems
+  [[./git-workflow.png]]
+
 ** Setting up name and e-mail address
    - If you've never used git before, first you need to set up your
      name and e-mail.
