@@ -6,16 +6,37 @@
 #+SETUPFILE: ./org-templates/level-0.org
 #+options: ^:nil
 
-* Introduction to version control systems
+* Version control
+  + What is it ?
+    - Version control is a system that records changes to a file or
+      set of files over time so that you can recall specific versions
+      later.
 * Types of version control systems
-**** Local version control system
-   #+CAPTION:  Cluster Network Diagram
-   #+LABEL:  Types of version control systems
-  [[./git.png]]
+** Local version control system
+   #+CAPTION:  Git local VCS
+   #+LABEL:  Git local VCS
+  [[./local.png]]
+  - Example =rcs= MacOS comes with =rcs= package
 
-** Distributed version control systems
+#+END_SRC
 ** Centralized version control systems
-* Git VCS
+   #+CAPTION:  Git Centralized VCS
+   #+LABEL:  Git Centralized VCS
+   [[./centralized.png]]
+ + Examples 
+   - =CVS= and
+   - =Subversion=
+  
+** Distributed version control systems
+   #+CAPTION:  Git Distributed VCS
+   #+LABEL:  Git Distributed VCS
+   [[./distributed.png]]
+   + Examples
+     - Git
+     - Mercurial
+     - Bazaar
+     - or Darcs
+* Git DVCS
 ** Work flow diagram
    #+CAPTION:  Cluster Network Diagram
    #+LABEL:  Types of version control systems
@@ -375,16 +396,32 @@ git pull origin master
 
 ** Working with branches
   - Nearly every VCS has some form of branching support. Branching
-    means you diverge from the main line of development and continue
+    means you diverge from the main line of testingment and continue
     to do work without messing with that main line.
+*** Default branch =master=
+    - Every repository comes with =master= as default branch
+    - In =git= every branch is =pointer= which points to the latest
+      commit in that branch
+    - Every time you made a new commit =master= pointer will move to
+      the latest commit.
+    - Image
+    #+CAPTION:  master branch
+    #+LABEL:  master branch
+    [[./master.png]]
+
 *** Crating branches
-    - Let us name our new branch *develop*.
+    - Let us name our new branch *testing*.
 #+BEGIN_SRC
-git branch develop
+git branch testing
  #+END_SRC
+    - Image
+    #+CAPTION:  Git Distributed VCS
+    #+LABEL:  Git Distributed VCS
+    [[./two-branches.png]]
+ 
     - Add style.css file
 #+BEGIN_SRC 
-touch lib/style.css
+touch style.css
 #+END_SRC
 #+BEGIN_SRC 
 h1 {
@@ -392,7 +429,7 @@ h1 {
 }
 #+END_SRC
 #+BEGIN_SRC 
-git add lib/style.css
+git add style.css
 git commit -m "Added css stylesheet"
 #+END_SRC
     - Change the main page
@@ -413,13 +450,18 @@ git add hello.html
 git commit -m "Hello uses style.css"
 #+END_SRC
 *** Navigating Branches
-    - Now your project has two branches =master= and =develop=.
+    - Now your project has two branches =master= and =testing=.
     - Switching to the Master branch
     - To switch between branches simply use the git checkout command.
 #+BEGIN_SRC 
 git checkout master
 cat hello.html
 #+END_SRC
+    - Image
+    #+CAPTION:  Git Distributed VCS
+    #+LABEL:  Git Distributed VCS
+    [[./head-to-master.png]]
+
 #+BEGIN_SRC 
 $ cat hello.html
 <html>
@@ -432,13 +474,18 @@ $ cat hello.html
 #+END_SRC
     -  Let us return to the style branch.
 #+BEGIN_SRC 
-git checkout develop
+git checkout testing
 cat hello.html
 #+END_SRC
+   - Image
+    #+CAPTION:  Git Distributed VCS
+    #+LABEL:  Git Distributed VCS
+    [[./head-to-testing.png]]
+
 #+BEGIN_SRC 
-$ git checkout develop
-Switched to branch 'develop'
-$ cat lib/hello.html
+$ git checkout testing
+Switched to branch 'testing'
+$ cat hello.html
 <!-- Author: Alexander Shvets (alex@githowto.com) -->
 <html>
   <head>
@@ -474,7 +521,7 @@ git branch -a
     - Merging brings changes from two branches into one. Let us go
       back to the style branch and merge it with master.
 #+BEGIN_SRC 
-git checkout develop
+git checkout testing
 git merge master
 git log
 #+END_SRC
@@ -500,5 +547,5 @@ git commit -m 'Life is great!'
 #+END_SRC
 ** Setting up remote repositroy
 ** Forking repository
-** 
+
 
