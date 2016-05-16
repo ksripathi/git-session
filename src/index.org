@@ -11,6 +11,12 @@
     - Version control is a system that records changes to a file or
       set of files over time so that you can recall specific versions
       later.
+  + Features
+    - Collaboration
+    - Storing Versions (Properly)
+    - Restoring Previous Versions
+    - Understanding What Happened
+    - Backup
 * Types of version control systems
 ** Local version control system
    #+CAPTION:  Git local VCS
@@ -128,7 +134,7 @@ nothing to commit (working directory clean)
       #+END_SRC
     - Result
       #+BEGIN_SRC 
-      $ git status
+$ git status
 # On branch master
 # Changes not staged for commit:
 #   (use "git add <file>..." to update what will be committed)
@@ -191,7 +197,7 @@ git commit -m "Unrelated change to c"
       #+BEGIN_SRC 
       git add hello.html
       #+END_SRC
-    - Second change: Add the HTML headers (<head> section) to the =hello.html= page.
+   - Second change: Add the HTML headers (<head> section) to the =hello.html= page.
 
       #+BEGIN_SRC 
 <html>
@@ -204,12 +210,12 @@ git commit -m "Unrelated change to c"
 
       #+END_SRC
 
-    - Check the current status
+   - Check the current status
       #+BEGIN_SRC 
       git status
       #+END_SRC
 
-    - You will see result as
+   - You will see result as
 #+BEGIN_SRC 
 $ git status
 # On branch master
@@ -535,7 +541,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 #+END_SRC
     - Open =hello.html= file
 #+BEGIN_SRC 
-<!-- Author: Alexander Shvets (alex@githowto.com) -->
+
 <html>
   <head>
 <<<<<<< HEAD
@@ -551,7 +557,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 #+END_SRC
     - Make a commit of conflict resolution
 #+BEGIN_SRC 
-git add lib/hello.html
+git add hello.html
 git commit -m "Merged master fixed conflict."
 
 Result:
